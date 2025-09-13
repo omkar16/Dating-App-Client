@@ -13,12 +13,21 @@ import { Signal } from '@angular/core';
 export class Nav {
   private accountService: AccountService = inject(AccountService);
   protected creds: any = {};
+  protected loggedIn = signal(false);
 
   login() {
     this.accountService.login(this.creds).subscribe({
-      next: (response: any) => console.log(response),
+      next: (response: any) => {
+        console.log(response);
+        this.loggedIn.set(true);
+        this.creds = {};
+      },
       error: (error: any) => alert(error.message),
     });
     //this.accountService.login(this.creds).subscribe({});
+  }
+
+  logout() {
+    this.loggedIn.set(false);
   }
 }
