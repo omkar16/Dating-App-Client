@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { Signal } from '@angular/core';
+import { Register } from '../register/register';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [Register],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
