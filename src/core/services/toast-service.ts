@@ -12,12 +12,12 @@ export class ToastService {
     if (!document.getElementById('toast-container')) {
       const container = document.createElement('div');
       container.id = 'toast-container';
-      container.className = 'toast toast-top toast-end';
+      container.className = 'toast toast-end toast-end';
       document.body.appendChild(container);
     }
   }
 
-  private createToastElement(message: string, alertClass: string, duration: 5000) {
+  private createToastElement(message: string, alertClass: string, duration: number = 5000) {
     const toastContainer = document.getElementById('toast-container');
     if (!toastContainer) return;
 
@@ -38,5 +38,21 @@ export class ToastService {
         toastContainer.removeChild(toast);
       }
     }, duration);
+  }
+
+  success(message: string, duration?: number) {
+    this.createToastElement(message, 'alert-success', duration);
+  }
+
+  error(message: string, duration?: number) {
+    this.createToastElement(message, 'alert-error', duration);
+  }
+
+  warning(message: string, duration?: number) {
+    this.createToastElement(message, 'alert-warning', duration);
+  }
+
+  info(message: string, duration?: number) {
+    this.createToastElement(message, 'alert-info', duration);
   }
 }
