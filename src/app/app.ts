@@ -3,7 +3,7 @@ import { Component, signal, inject, OnInit } from '@angular/core';
 import { Nav } from '../layout/nav/nav';
 import { AccountService } from '../core/services/account-service';
 import { User } from '../types/user';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,7 @@ export class App implements OnInit {
   private http = inject(HttpClient);
   protected readonly title = 'Dating App';
   protected members = signal<User[]>([]);
+  public router = inject(Router);
 
   async ngOnInit() {
     this.http.get<User[]>('https://localhost:5001/api/members').subscribe({
